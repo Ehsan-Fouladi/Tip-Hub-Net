@@ -1,0 +1,88 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'home:home' %}" class="brand-link">
+        <span class="brand-text font-weight-light">{% block main %}آموزش برنامه نویسی{% endblock %}</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            {% if request.user.image %}
+                <div class="image">
+                    <img src="{{ request.user.image.url }}" class="img-circle elevation-2" alt="User Image">
+                </div>
+            {% else %}
+                <img src="{% static 'image/sutdent-prof.png' %}" alt="image">
+            {% endif %}
+            <div class="info">
+                <a href="#" class="d-block">{{ request.user }}</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            مقالات
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url "account:panel_user" %}"
+                               class="nav-link {% if request.resolver_match.url_name == "panel_user" %}active{% endif %}">
+                                <i class="fa fa-list nav-icon"></i>
+                                <p>لیست ویدیو ها</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url "account:panel_create" %}"
+                               class="nav-link {% if request.resolver_match.url_name == "panel_create" %}active{% endif %}">
+                                <i class="fa fa-edit nav-icon"></i>
+                                <p>افزودن ویدیو</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "account:profile" user.pk %}"
+                       class="nav-link {% if request.resolver_match.url_name == "profile" %}active{% endif %}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            پروفایل
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "account:author" user.pk %}"
+                       class="nav-link {% if request.resolver_match.url_name == "author" %}active{% endif %}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            درخواست معلم شدن
+                        </p>
+                    </a>
+                </li>
+                {% if user.is_admin %}
+                    <li class="nav-item">
+                        <a href="{% url "account:notifications" %}"
+                           class="nav-link {% if request.resolver_match.url_name == "notifications" %}active{% endif %}">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                اطلاع رسانی
+                            </p>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

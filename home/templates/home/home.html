@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% load hitcount_tags %}
+{% block title %} مجله {% endblock %}
+{% block content %}
+<main>
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h2 class="title-section">تازه ترین ویدیوها </h2>
+                <a href="{% url "home:video_all" %}" class="btn custom-btn">
+                    نمایش همه
+                </a>
+            </div>
+            <div class="row">
+                {% for video in object_list %}
+                {% if video.status %}
+                <!-- item -->
+                <div class="col-md-6 col-lg-4 my-2">
+                    <div class="custom-bg">
+                        <div class="video-card">
+                            <a href="{% url 'home:detail' video.id video.slug %}" class="position-relative d-block ">
+                                <img src="{{ video.image.url }}" alt="" class="img-fluid w-100 h-100">
+                                <div class="video-play-btn">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between video-category-time">
+                                    <h6 class="">موفقیت</h6>
+                                    <span class="vid-time">{{ video.time }}</span>
+                                </div>
+                                <div class="video-card-details">
+                                    <div>
+                                        <span>{% get_hit_count for video %}</span>
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div>
+                                        <span>{{ video.likes.all.count }}</span>
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                    <div>
+                                        <span>{{ video.comments.all.count }}</span>
+                                        <i class="fa fa-comment"></i>
+                                    </div>
+                                </div>
+                                <div class="article-overlay"></div>
+                            </a>
+
+                        </div>
+                        <a href="#">
+                            <h5 class="video-card-title m-2">{{ video.body|striptags|truncatewords:"25" }}</h5>
+                        </a>
+                        <div class="my-3 pb-3 mx-2">
+                            <i class="fa fa-user  ml-1 "></i>
+                            <span>{{ video.user.username }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <!-- end item -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

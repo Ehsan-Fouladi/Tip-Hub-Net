@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'panels/header.html' %}
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url "home:home" %}" class="nav-link">صفحه اصلی</a>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- Main Sidebar Container -->
+    {% include 'panels/sidebar.html' %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">پنل کاربری</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url "home:home" %}">صفحه اصلی</a></li>
+                            <li class="breadcrumb-item active">داشبورد</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                اطلاع رسانی ها
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>عضو ها</th>
+                                        <th>اطلاع رسانی</th>
+                                        <th>وعضیت</th>
+                                        <th>تاریخ ایجاد</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for video in object_list %}
+                                        <tr>
+                                            <td>{{ video.user.username }}</td>
+                                            <td>{{ video.body|striptags|truncatewords:"10" }}</td>
+                                            <td>{{ video.is_admin }}</td>
+                                            <td>{{ video.time_created }}</td>
+                                            <td>
+
+                                                {% if video.is_admin %}
+                                                    <span class="badge badge-info"> ایجاد شد</span>
+                                                {% endif %}
+
+                                                {% if user.is_admin %}
+                                                    <a class="badge badge-success"
+                                                       href="{% url "account:notifications_update" video.pk %}">بروزرسانی</a>
+                                                    <a class="badge badge-dark"
+                                                       href="{% url "account:notifications_create" video.pk %}">افزودن</a>
+                                                {% endif %}
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-left">
+            <b>هرگونه کپی برداری حرام است</b>&copy;
+        </div>
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% include 'panels/footer.html' %}
+</body>
+</html>
