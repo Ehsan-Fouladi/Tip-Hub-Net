@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 SMS = ghasedakpack.Ghasedak("beee4729b279b215bd79847db9fb83756ec7002da0ef4b2a458ac2f55fed188c")
 
-
+# login and register number
 class Register_Login_View(View):
     def get(self, request):
         form = OtpLoginForm()
@@ -34,7 +34,7 @@ class Register_Login_View(View):
             form.add_error("number", 'شماره تلفن متعبر نمی باشد ')
         return render(request, "account/register.html", {"form": form})
 
-
+# chak otp
 class CzechOtpView(View):
     def get(self, request):
         form = CzechOtpForm()
