@@ -2,6 +2,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{% url 'home:home' %}" class="brand-link">
+        <img src="{% static "image/logo2.jpg" %}"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
         <span class="brand-text font-weight-light">{% block main %}آموزش برنامه نویسی{% endblock %}</span>
     </a>
 
