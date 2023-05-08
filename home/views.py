@@ -4,12 +4,14 @@ from django.core.paginator import Paginator
 from videos.models import Video, Comment, Like, Notification
 from hitcount.views import HitCountDetailView
 
+
 # Home
 class Home(ListView):
     model = Video
     ordering = ['-user', ]
     paginate_by = 6
     template_name = "home/home.html"
+
 
 # list video and paginate
 def VideoList(request):
@@ -20,6 +22,7 @@ def VideoList(request):
     context = {'object_list': object}
     return render(request, "home/video-list.html", context)
 
+
 # view count
 class HitCount(HitCountDetailView):
     model = Video
@@ -27,6 +30,7 @@ class HitCount(HitCountDetailView):
     context_object_name = 'video'
     slug_field = 'slug'
     count_hit = True
+
 
 # search
 def Search(request):
@@ -55,8 +59,6 @@ def VideoDetail(request, pk, slug):
             context['is_liked'] = True
         else:
             context['is_liked'] = False
-    else:
-        return redirect('account:register_login')
 
     return render(request, 'home/video-detail.html', context)
 
@@ -70,8 +72,8 @@ def likeDetail(request, id, pk):
         except:
             Like.objects.create(video_id=pk, user_id=request.user.id)
         return redirect('home:video_all')
-
     return redirect("account:register_login")
+
 
 # Notification users
 class NotificationView(View):

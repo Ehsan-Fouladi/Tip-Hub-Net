@@ -18,18 +18,14 @@ class Video(models.Model):
 
     class Meta:
         ordering = ["-created",]
-
+        verbose_name = "ویدیو ها"
+        verbose_name_plural = "ویدیو"
 
     def __str__(self):
         return f'{self.time} - {self.status}'
 
     def get_absolute_url(self):
         return reverse("account:panel_user")
-
-    class Meta:
-        verbose_name = "ویدیو ها"
-        verbose_name_plural = "ویدیو"
-
 
 
 class Comment(models.Model):
