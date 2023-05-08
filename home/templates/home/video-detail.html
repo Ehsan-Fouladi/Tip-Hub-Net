@@ -132,6 +132,11 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                            {% else %}
+                                <div class="alert alert-danger">
+                                    <a href="{% url "account:register_login" %}" class="alert-link">برای ثبت نظر وارد
+                                        سایت شوید.</a>
+                                </div>
                             {% endif %}
                             <!-- end comments -->
                             <!--  -->
@@ -140,6 +145,10 @@
 
                                     {% if object_list.has_next %}
                                         <a href="?page=
+
+
+
+
 
 
 
@@ -166,6 +175,10 @@
 
                                     {% if object_list.has_previous %}
                                         <a href="?page=
+
+
+
+
 
 
 
@@ -213,12 +226,10 @@
                             </div>
                         </div>
                     </aside>
-
                     <!-- end side -->
                 </div>
             </div>
         </section>
-
     </main>
     <script>
         function like(id, pk) {

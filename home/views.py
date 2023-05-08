@@ -3,7 +3,7 @@ from django.views.generic import ListView, View
 from django.core.paginator import Paginator
 from videos.models import Video, Comment, Like, Notification
 from hitcount.views import HitCountDetailView
-
+from django.contrib import messages
 
 # Home
 class Home(ListView):
