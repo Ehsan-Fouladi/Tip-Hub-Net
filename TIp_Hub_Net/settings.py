@@ -35,7 +35,6 @@ INSTALLED_APPS = [
 
     # my_pega
     "crispy_forms",
-    "mptt",
     'hitcount',
 ]
 SITE_ID = 1
