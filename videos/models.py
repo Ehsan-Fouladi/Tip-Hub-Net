@@ -7,7 +7,6 @@ from hitcount.models import HitCount
 
 
 class Category(models.Model):
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, related_name='subs')
     title = models.CharField(verbose_name='عنوان', max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
