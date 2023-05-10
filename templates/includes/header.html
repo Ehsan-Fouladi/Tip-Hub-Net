@@ -142,33 +142,16 @@
 
     {#  navbar  #}
     <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
+        {% for cat in categories %}
         <li id="li-" class="mx-3 menu-item">
-            <a href="#" class="nav-menu-item">
-                پایتون
+            <a href="{% url 'home:category' cat.id %}" class="nav-menu-item">
+                {{ cat.title }}
             </a>
             <ul class="sub-menu">
-                <a href="">آموزش مقدماتی تا پیشرفته</a>
-                <a href="">آموزش فریمورک جنگو</a>
+                <a href="#">آموزش مقدماتی تا پیشرفته</a>
             </ul>
         </li>
-        <li id="li-" class="mx-3 menu-item">
-            <a href="#" class="nav-menu-item">
-                جاوااسکریپت
-            </a>
-            <ul class="sub-menu">
-                <a href="">React</a>
-                <a href="">Vue</a>
-                <a href="">ReactNative</a>
-            </ul>
-        </li>
-        <li id="li-" class="mx-3 menu-item">
-            <a href="#" class="nav-menu-item">
-                تایپ اسکریپت
-            </a>
-            <ul class="sub-menu">
-                <a href="">اموزش پیشرفته</a>
-            </ul>
-        </li>
+        {% endfor %}
     </nav>
     {#  navbar  #}
 </header>

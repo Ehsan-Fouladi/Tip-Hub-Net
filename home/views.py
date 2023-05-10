@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, View
 from django.core.paginator import Paginator
-from videos.models import Video, Comment, Like, Notification
+from videos.models import Video, Comment, Like, Notification, Category
 from hitcount.views import HitCountDetailView
 from django.contrib import messages
+
 
 # Home
 class Home(ListView):
@@ -23,24 +24,11 @@ def VideoList(request):
     return render(request, "home/video-list.html", context)
 
 
-# view count
-class HitCount(HitCountDetailView):
-    model = Video
-    template_name = 'home/video-detail.html'
-    context_object_name = 'video'
-    slug_field = 'slug'
-    count_hit = True
-
-
-# search
-def Search(request):
-    q = request.GET.get("q")
-    videos = Video.objects.filter(slug__icontains=q)
-    page_number = request.GET.get("page")
-    paginate = Paginator(videos, 2)
-    object = paginate.get_page(page_number)
+def Category_Detail(request, pk=None):
+    category = get_object_or_404(Category, id=pk)
+    object = category.categorise.all().filter(status=True)
     context = {'object_list': object}
-    return render(request, "home/video-list.html", context)
+    return render(request, 'home/video-list.html', context)
 
 
 # system like and view and comment
@@ -73,6 +61,26 @@ def likeDetail(request, id, pk):
             Like.objects.create(video_id=pk, user_id=request.user.id)
         return redirect('home:video_all')
     return redirect("account:register_login")
+
+
+# view count
+class HitCount(HitCountDetailView):
+    model = Video
+    template_name = 'home/video-detail.html'
+    context_object_name = 'video'
+    slug_field = 'slug'
+    count_hit = True
+
+
+# search
+def Search(request):
+    q = request.GET.get("q")
+    videos = Video.objects.filter(slug__icontains=q)
+    page_number = request.GET.get("page")
+    paginate = Paginator(videos, 2)
+    object = paginate.get_page(page_number)
+    context = {'object_list': object}
+    return render(request, "home/video-list.html", context)
 
 
 # Notification users
