@@ -23,7 +23,7 @@ def VideoList(request):
     context = {'object_list': object}
     return render(request, "home/video-list.html", context)
 
-
+# category
 def Category_Detail(request, pk=None):
     category = get_object_or_404(Category, id=pk)
     object = category.categorise.all().filter(status=True)

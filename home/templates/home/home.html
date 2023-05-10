@@ -19,7 +19,7 @@
                 <div class="col-md-6 col-lg-4 my-2">
                     <div class="custom-bg">
                         <div class="video-card">
-                            <a href="{% url 'home:detail' video.id video.slug %}" class="position-relative d-block ">
+                            <a href="{% url 'home:hit_count' video.id video.slug %}" class="position-relative d-block ">
                                 <img src="{{ video.image.url }}" alt="" class="img-fluid w-100 h-100">
                                 <div class="video-play-btn">
                                     <i class="fa fa-play"></i>

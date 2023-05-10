@@ -7,7 +7,7 @@ class FieldsMixin():
         if request.user.is_admin:
             self.fields = "__all__"
         elif request.user:
-            self.fields = ['body', 'slug', 'about_video', 'video', 'image']
+            self.fields = ['body', 'slug', 'about_video', 'video', 'image', 'category']
         else:
             raise Http404
         return super(FieldsMixin, self).dispatch(request, *args, **kwargs)

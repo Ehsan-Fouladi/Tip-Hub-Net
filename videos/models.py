@@ -27,7 +27,7 @@ class Video(models.Model):
     video = models.FileField(upload_to="video/", verbose_name='ویدیو')
     image = models.ImageField(upload_to="image/", verbose_name='عکس')
     hit_count = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic')
-    category = models.ManyToManyField(Category, related_name='categorise')
+    category = models.ManyToManyField(Category, related_name='categorise', verbose_name='دسته بندی ها')
     created = models.DateTimeField(auto_now_add=True, verbose_name='زمان')
     time = models.TimeField(auto_now_add=True, verbose_name="ساعت")
     status = models.BooleanField(null=True, blank=True, verbose_name="وضیعت")
