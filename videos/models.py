@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 from django.utils.html import format_html
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount
-
+from jalali_date import datetime2jalali
 
 class Category(models.Model):
     title = models.CharField(verbose_name='عنوان', max_length=100)
@@ -47,6 +47,9 @@ class Video(models.Model):
 
     shoe_image.short_description = "عکس بند انگشتی"
 
+    def get_jalali_data(self):
+        return datetime2jalali(self.created).strftime('%Y/%m/%d _ %H:%M')
+
     def get_absolute_url(self):
         return reverse("account:panel_user")
 
@@ -64,6 +67,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.body[:10]}"
+
+    def get_jalali_comment(self):
+        return datetime2jalali(self.comment_at).strftime('%Y/%m/%d')
 
 
 class Like(models.Model):

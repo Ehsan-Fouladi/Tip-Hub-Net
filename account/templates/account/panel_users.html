@@ -61,6 +61,7 @@
                                         <th>موضوع</th>
                                         <th>ویدیو</th>
                                         <th>عکس</th>
+                                        <th>دسته بندی</th>
                                         <th>زمان انتشار</th>
                                         <th>انتشار</th>
                                     </tr>
@@ -74,12 +75,13 @@
                                                 <video src="{{ video.video.url }}" width="120"></video>
                                             </td>
                                             <td><img src="{{ video.image.url }}" width="120"></td>
+                                            <td>{{ video.category.first }}</td>
                                             <td>{{ video.time }}</td>
                                             <td>
                                                 {% if video.status %}
                                                     <span class="badge badge-info">تایید شد</span>
                                                     <a target="_blank" class="badge badge-primary"
-                                                       href="{% url 'home:hit_count' video.id video.slug %}">نمایش
+                                                       href="{% url 'home:detail' video.id video.slug %}">نمایش
                                                         ویدیو</a>
                                                     <a class="badge badge-success"
                                                        href="{% url "account:panel_update" video.pk %}">بروزرسانی</a>

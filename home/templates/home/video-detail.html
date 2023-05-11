@@ -37,7 +37,7 @@
                             <h3 class="video-title my-3"> {{ video.body|safe }}
                             </h3>
                             <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
-                                <p class="color78">{{ video.created }}</p>
+                                <p class="color78">{{ object.get_jalali_data }}</p>
                                 <div class="d-flex align-items-center view-like">
                                     <div class="mx-3">
                                         <span>{% get_hit_count for video %}</span>
@@ -103,7 +103,7 @@
                                                         </div>
                                                     {% endif %}
 
-                                                    <p class="comment-date-time">{{ commit.comment_at }}</p>
+                                                    <p class="comment-date-time">{{ commit.get_jalali_comment }}</p>
                                                 </div>
                                                 <p class="px-4 py-2 comment-text text-justify">{{ commit.body }}</p>
 
@@ -124,7 +124,7 @@
                                                             <p class="user-name pr-2">{{ reply.user.username }}</p>
                                                         </div>
 
-                                                        <p class="comment-date-time">{{ reply.comment_at }}</p>
+                                                        <p class="comment-date-time">{{ reply.get_jalali_comment }}</p>
                                                     </div>
                                                     <p class="px-4 py-2 comment-text text-justify">{{ reply.body }}</p>
                                                 </div>
