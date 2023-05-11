@@ -76,7 +76,7 @@
                                             </td>
                                             <td><img src="{{ video.image.url }}" width="120"></td>
                                             <td>{{ video.category.first }}</td>
-                                            <td>{{ video.time }}</td>
+                                            <td>{{ video.get_jalali_data }}</td>
                                             <td>
                                                 {% if video.status %}
                                                     <span class="badge badge-info">تایید شد</span>

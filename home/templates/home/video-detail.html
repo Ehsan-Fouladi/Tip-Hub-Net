@@ -37,7 +37,7 @@
                             <h3 class="video-title my-3"> {{ video.body|safe }}
                             </h3>
                             <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
-                                <p class="color78">{{ object.get_jalali_data }}</p>
+                                <p class="color78">{{ video.get_jalali_data }}</p>
                                 <div class="d-flex align-items-center view-like">
                                     <div class="mx-3">
                                         <span>{% get_hit_count for video %}</span>
