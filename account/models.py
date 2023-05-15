@@ -37,8 +37,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    username = models.CharField(verbose_name='نام کاربری', null = True, max_length=255)
-    number = models.CharField(max_length=12 ,verbose_name="شماره تلفن")
+    username = models.CharField(verbose_name='نام کاربری', null=True, max_length=255)
+    number = models.CharField(max_length=12, verbose_name="شماره تلفن", unique=True)
     image = models.ImageField(upload_to='ImageUser/', null=True, blank=True)
     author = models.CharField(max_length=200)
     about_user = models.TextField(null=True)
@@ -85,7 +85,6 @@ class Otp(models.Model):
 
     def __str__(self):
         return self.number
-
 
     class Meta:
         verbose_name_plural = "کدتاید"
