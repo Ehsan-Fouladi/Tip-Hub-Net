@@ -1,5 +1,6 @@
 [//]: # (# TIp_Hub_Net)
-## آموزش برنامه نویسی
+
+## Tip Hub Net
 
 <p>pip install -r requirements.txt</p>
 <p>python manage.py migrate</p>
